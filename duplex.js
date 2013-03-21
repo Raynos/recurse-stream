@@ -7,6 +7,7 @@ function duplex(readable, writable) {
             readable(chunk)
         } else {
             writable(chunk, recurse)
+            return writable
         }
     }
 }

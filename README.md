@@ -48,6 +48,29 @@ function cursorStream(db, opts) {
 }
 ```
 
+## Example transforms
+
+```js
+var array = require("recurse-stream/array")
+var map = require("recurse-stream/map")
+var mapAsync = require("recurse-stream/mapAsync")
+
+var stream = array.readList([1, 2, 3])
+
+var doubles = map(stream, function(i) { return i * 2 })
+var squares = mapAsync(stream, function (i, cb)  {
+    process.nextTick(function () {
+        cb(i * i)
+    })
+})
+
+squares(function print(chunk, recurse) {
+    console.log("chunk", chunk)
+
+    recurse && recurse()
+})
+```
+
 ## Installation
 
 `npm install recurse-stream`
