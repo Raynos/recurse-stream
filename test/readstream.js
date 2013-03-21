@@ -1,6 +1,6 @@
 var test = require("tape")
 
-var readstream = require("../index")
+var readstream = require("../readstream")
 
 test("readstream", function (assert)  {
     assert.equal(typeof readstream, "function")

@@ -1,4 +1,6 @@
-var readstream = require("./index")
+var readstream = require("./readstream")
+var end = require("./end")
+var isError = require("./is-error")
 
 module.exports = {
     writeList: writeList
@@ -10,7 +12,7 @@ function readList(list) {
     var index = 0
     return readstream(function readable(writable, recurse) {
         if (index === list.length) {
-            return writable(null)
+            return writable(end)
         }
 
         writable(list[index++], recurse)
@@ -22,8 +24,10 @@ function readList(list) {
 function writeList(callback) {
     var result = []
     return function writable(chunk, recurse) {
-        if (chunk === null) {
-            return callback(result)
+        if (chunk === end) {
+            return callback(null, result)
+        } else if (isError(chunk)) {
+            return callback(chunk)
         }
 
         result.push(chunk) && recurse()

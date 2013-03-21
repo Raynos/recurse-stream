@@ -17,7 +17,7 @@ test("can read from a list", function (assert) {
 })
 
 test("can write to a list", function (assert) {
-    var writable = array.writeList(function (list){
+    var writable = array.writeList(function (err, list){
         assert.deepEqual(list, [1, 2, 3])
         assert.end()
     })

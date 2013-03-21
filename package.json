@@ -5,7 +5,7 @@
   "keywords": [],
   "author": "Raynos <raynos2@gmail.com>",
   "repository": "git://github.com/Raynos/recurse-stream.git",
-  "main": "index",
+  "main": "readstream",
   "homepage": "https://github.com/Raynos/recurse-stream",
   "contributors": [{
     "name": "Raynos"

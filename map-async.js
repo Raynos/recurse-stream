@@ -1,14 +1,16 @@
 var isError = require("./is-error")
 var end = require("./end")
 
-module.exports = map
+module.exports = mapAsync
 
-function map(readable, lambda) {
+function mapAsync(readable, lambda) {
     return function stream(writable) {
         readable(function writer(chunk, recurse) {
             chunk === end ? writable(end) :
                 isError(chunk) ? writable(chunk) :
-                writable(lambda(chunk), recurse)
+                lambda(chunk, function callback(result) {
+                    writable(result, recurse)
+                })
         })
     }
 }
