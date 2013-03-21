@@ -1,15 +1,17 @@
 {
   "name": "recurse-stream",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A functionally recursive pull stream",
   "keywords": [],
   "author": "Raynos <raynos2@gmail.com>",
   "repository": "git://github.com/Raynos/recurse-stream.git",
   "main": "readstream",
   "homepage": "https://github.com/Raynos/recurse-stream",
-  "contributors": [{
-    "name": "Raynos"
-  }],
+  "contributors": [
+    {
+      "name": "Raynos"
+    }
+  ],
   "bugs": {
     "url": "https://github.com/Raynos/recurse-stream/issues",
     "email": "raynos2@gmail.com"
@@ -21,10 +23,12 @@
     "browservefy": "~0.0.7",
     "testem": "~0.2.56"
   },
-  "licenses": [{
-    "type": "MIT",
-    "url": "http://github.com/Raynos/recurse-stream/raw/master/LICENSE"
-  }],
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "http://github.com/Raynos/recurse-stream/raw/master/LICENSE"
+    }
+  ],
   "scripts": {
     "test": "testem ci",
     "build-test": "browserify-server --bundle=test/index.js -o test/static/bundle.js --debug",
