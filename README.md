@@ -71,6 +71,37 @@ squares(function print(chunk, recurse) {
 })
 ```
 
+## Example buffers
+
+```js
+var Stream = require("stream")
+var readstream = require("recurse-stream")
+var buffer = require("recurse-stream/buffer")
+
+var source = Stream()
+// Wrapping a readable stream with `buffer` will correctly respect the
+// writable's pulling requests and buffer up any chunks that come too fast
+var stream = buffer(function (writable) {
+    source.on("data", function (chunk) {
+        writable(chunk, function () {})
+    })
+})
+
+// the chunks will print once per second
+stream(function writeChunk(chunk, recurse) {
+    console.log("print chunk", chunk)
+
+    setTimeout(recurse, 1000)
+})
+
+source.emit("data", 1)
+source.emit("data", 2)
+source.emit("data", 3)
+source.emit("data", 4)
+source.emit("data", 5)
+source.emit("data", null)
+```
+
 ## Installation
 
 `npm install recurse-stream`
